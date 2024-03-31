@@ -2,14 +2,14 @@
 {
     using Raylib_cs;
     using System;
+    using System.Security.Cryptography;
 
     internal class Program
-    {
-        // define some variables
+    {   
         // variables for the window
         static string title = "Rhythm Tiles";
         public static int windowWidth = 800;
-        public static int windowHeight = 600;
+        public static int windowHeight = 1000;
         static void Main(string[] args)
         {
             //make a window!
@@ -37,7 +37,9 @@
             //creating a canvas and doing black background 
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.Black);
+
             /*
+             *use that direction checker that TJ's program has jo it was also on canvas
              * player hits WASD (collision for box W or A or S, ect)
              *  {
              *      player gets a point?
@@ -49,6 +51,15 @@
 
             //this one stays on the bottom
             Raylib.EndDrawing();
+        }
+
+
+        public enum Direction
+        {
+            Left,
+            Up,
+            Down,
+            Right
         }
     }
 }
