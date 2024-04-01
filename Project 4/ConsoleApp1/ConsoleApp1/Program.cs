@@ -10,6 +10,9 @@
         static string title = "Rhythm Tiles";
         public static int windowWidth = 800;
         public static int windowHeight = 1000;
+
+        public static HitTile[] hitTiles;
+        public static PlayerControlBox[] controlBoxes;
         static void Main(string[] args)
         {
             //make a window!
@@ -27,10 +30,17 @@
         }
         static void Setup()
         {
-             /*
-             *4X player control boxes, WASD/ UpDownLeftRight
-             * Tiles spawn[randomly ?] you'll need at least 4 objects
-             */
+            //setup for our 4 HitTile and PlayerControlBox objects. 0=Left 1=Up 2=Down 3=Right (DDR notation)
+            hitTiles = new HitTile[4];
+            for (int i = 0; i < hitTiles.Length; i++)
+            {
+                hitTiles[i] = new HitTile(i);
+            }
+            controlBoxes = new PlayerControlBox[4];
+            for (int i = 0; i < controlBoxes.Length; i++)
+            {
+                controlBoxes[i] = new PlayerControlBox(i);
+            }
         }
         static void Update()
         {
@@ -38,16 +48,15 @@
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.Black);
 
-            /*
-             *use that direction checker that TJ's program has jo it was also on canvas
-             * player hits WASD (collision for box W or A or S, ect)
-             *  {
-             *      player gets a point?
-             *      sound plays
-             *  }
-             *  move boxes
-             *  timer increases?  
-             */
+            foreach (HitTile hitTile in hitTiles)
+            {
+                hitTile.Update();
+            }
+            for (int i = 0; i < controlBoxes.Length; i++)
+            {
+                controlBoxes[i].Update(hitTiles[i]);
+            }
+            
 
             //this one stays on the bottom
             Raylib.EndDrawing();
