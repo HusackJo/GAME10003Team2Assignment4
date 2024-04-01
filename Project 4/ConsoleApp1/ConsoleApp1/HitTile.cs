@@ -12,15 +12,16 @@ namespace ConsoleApp1
     internal class HitTile
     {
         //define variables
-        Vector2 position;
+        public static Vector2 position;
         Vector2 size;
         Vector2 velocity;
         Vector2 spawnPos;
         int spawnTimer;
         int floorHeight = Program.windowHeight;
+        int tileID;
         Random rng = new Random();
 
-        HitTile(int tilePlacement)
+        public HitTile(int tilePlacement)
         {
             //variables get values
             position = new Vector2(-80, -80);
@@ -30,21 +31,27 @@ namespace ConsoleApp1
             {
                 case 0:
                     spawnPos = new Vector2(120, -80);
+                    tileID = 0;
                     break;
                 case 1:
                     spawnPos = new Vector2(280, -80);
+                    tileID = 1;
                     break;
                 case 2:
                     spawnPos = new Vector2(440, -80);
+                    tileID = 2;
                     break;
                 case 3:
                     spawnPos = new Vector2(600, -80);
+                    tileID = 3;
                     break;
             }
-            spawnTimer = 0;
+            spawnTimer = 10000;
         }
         public void Update()
         {
+            //respawn?
+            Respawn();
             //move
             position += velocity;
             //
@@ -61,7 +68,8 @@ namespace ConsoleApp1
         }
         public void Respawn()
         {
-            if (spawnTimer > 10000 && position.X < 0)
+            spawnTimer++;
+            if (spawnTimer > 0 && position.X < 0)
             {
                 if (rng.Next(1, 200) <= 3)//a 1.5% chance called 60 times a second
                 {
@@ -74,6 +82,14 @@ namespace ConsoleApp1
         {
             //i hope someone sees this comedically high number send me a message if u do lol
             position.X -= 2000000;
+        }
+        public int GetPosY()
+        {
+            return (int.Parse(position.Y.ToString()));
+        }
+        public int GetTileID()
+        {
+            return tileID;
         }
     }
 }
