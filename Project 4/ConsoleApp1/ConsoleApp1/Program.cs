@@ -30,7 +30,9 @@
         }
         static void Setup()
         {
+            // adding a comment
             //setup for our 4 HitTile and PlayerControlBox objects. 0=Left 1=Up 2=Down 3=Right (DDR notation)
+            /*
             hitTiles = new HitTile[4];
             for (int i = 0; i < hitTiles.Length; i++)
             {
@@ -41,6 +43,7 @@
             {
                 controlBoxes[i] = new PlayerControlBox(i);
             }
+            */
         }
         static void Update()
         {
@@ -48,6 +51,7 @@
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.Black);
 
+            /*
             foreach (HitTile hitTile in hitTiles)
             {
                 hitTile.Update();
@@ -56,6 +60,7 @@
             {
                 controlBoxes[i].Update(hitTiles[i]);
             }
+            */
             
 
             //this one stays on the bottom

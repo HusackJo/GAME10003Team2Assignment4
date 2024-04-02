@@ -56,7 +56,7 @@ namespace ConsoleApp1
             {
                 case 0:
                     if (Raylib.IsKeyPressed(KeyboardKey.Left) && positionTracker == hitTile.GetTileID())
-                    {
+           S         {
                         HitCheck(hitTile);
                     }
                     break;
